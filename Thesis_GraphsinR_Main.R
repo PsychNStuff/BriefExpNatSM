@@ -300,6 +300,8 @@ data2 <- data[!(is.na(data$Religious_Affiliation)), ]
 #This will plot your data with facet wrap, so your graphs will be the same, but you will see them side by side
 mod_graph1 <- ggplot(data = data, aes(x = Group, y = Negative_Affect, fill = Group)) +
   geom_bar(stat = "summary", fun = "mean") + #put the info for your graph here
+  geom_errorbar(aes(ymin = mNA - sdNA, ymax = mNA + sdNA),
+                position = position_dodge(0.9), width = .2) +
   theme_bw(base_size = 14)+ #background is white
   facet_wrap(~ SM_Use, nrow = 2, labeller = label_both) + #everything wraps. nrow = number of rows.
   labs(title = "Effect of SM Use on NA",
@@ -313,6 +315,8 @@ mod_graph1 #print the plot
 
 mod_graph2 <- ggplot(data2, aes(x = Group, y = Negative_Affect, fill = Group)) +
   geom_bar(stat = "summary", fun = "mean", na.rm = T) +
+  geom_errorbar(aes(ymin = mNA - sdNA, ymax = mNA + sdNA),
+                position = position_dodge(0.9), width = .2) +
   theme_bw(base_size = 14)+
   facet_wrap(~ Religious_Affiliation, nrow = 1, labeller = label_both) + 
   labs(title = "Effect of Religious Affiliation on NA",
@@ -324,6 +328,8 @@ mod_graph2
 
 mod_graph3 <- ggplot(data, aes(x = Group, y = Negative_Affect, fill = Group)) +
   geom_bar(stat = "summary", fun = "mean", na.rm = T) +
+  geom_errorbar(aes(ymin = mNA - sdNA, ymax = mNA + sdNA),
+                position = position_dodge(0.9), width = .2) +
   theme_bw(base_size = 14)+
   facet_wrap(~ Time_Outside, nrow = 2, labeller = label_both) + 
   labs(title = "Effect of time spent outside on NA",
