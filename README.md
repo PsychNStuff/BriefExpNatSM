@@ -11,3 +11,5 @@ Most of my analyses were conducted in SPSS. Variables were recoded and made into
 - Note that the code for PROCESS is not included here because the syntax is extremely long, but the tool to use it for SPSS, SAS, or R can be found at https://www.processmacro.org/download.html
 
 Bar graphs were completed using R.
+
+This is currently a preregistered project at https://osf.io/r68aj/
