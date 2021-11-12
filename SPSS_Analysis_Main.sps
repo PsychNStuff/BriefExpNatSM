@@ -167,7 +167,7 @@ EXAMINE VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Soc
   /NOTOTAL.
 
 DESCRIPTIVES VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Social_Comparisons_Total Depression_Total FSI_Certainty FSI_Relatedness 
-  Affect_Total FSI_Positivity FSI_Vividness FSI_Total
+  Affect_Total FSI_Positivity FSI_Vividness FSI_Total Time_Outside SM_Use1 Religion_Recoded
   /STATISTICS=MEAN STDDEV MIN MAX KURTOSIS SKEWNESS.
 
 CORRELATIONS
@@ -469,7 +469,7 @@ MEANS TABLES=Depression_Total BY Condition
 *Tukey's HSD is used to perform a post-hoc test.
 
 ONEWAY FSI_Certainty FSI_Relatedness FSI_Positivity FSI_Vividness Depression_Total Social_Comparisons_Total Loneliness_Total Negative_Affect 
-    Positive_Affect BY Condition
+    Positive_Affect Awe_Total BY Condition
   /STATISTICS DESCRIPTIVES
   /MISSING ANALYSIS
   /POSTHOC=TUKEY ALPHA(0.05).
@@ -477,7 +477,7 @@ ONEWAY FSI_Certainty FSI_Relatedness FSI_Positivity FSI_Vividness Depression_Tot
 *Univariate ANOVA is performed to find the partial eta squared, or effect size.
 
 UNIANOVA FSI_Certainty FSI_Relatedness FSI_Positivity FSI_Vividness Depression_Total Social_Comparisons_Total Loneliness_Total Negative_Affect 
-    Positive_Affect BY Condition
+    Positive_Affect Awe_Total BY Condition
 /METHOD=SSTYPE(3)
 /INTERCEPT=INCLUDE
 /PRINT=ETASQ
