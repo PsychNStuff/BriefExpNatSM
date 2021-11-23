@@ -1,4 +1,4 @@
-﻿* Encoding: UTF-8.
+* Encoding: UTF-8.
 
 *Check for participants that did not pass an attention check or do not fit demographic criteria.
 
@@ -431,6 +431,14 @@ GRAPH
 GRAPH
   /HISTOGRAM=Depression_Total
   /PANEL ROWVAR=Condition ROWOP=CROSS.
+  
+GRAPH
+  /HISTOGRAM=SM_Use1
+  /PANEL ROWVAR=Condition ROWOP=CROSS.
+
+GRAPH
+  /HISTOGRAM=Time_Outside
+  /PANEL ROWVAR=Condition ROWOP=CROSS.
 
 *Means tables by group; used to add descriptive statistics to check for reliability within each group and create a detailed ANOVA table.
 
@@ -462,6 +470,12 @@ MEANS TABLES=FSI_Vividness BY Condition
   /CELLS=MEAN COUNT STDDEV MIN MAX.
 
 MEANS TABLES=Depression_Total BY Condition
+  /CELLS=MEAN COUNT STDDEV MIN MAX.
+  
+MEANS TABLES=SM_Use1 BY Condition
+  /CELLS=MEAN COUNT STDDEV MIN MAX.
+
+MEANS TABLES=Time_Outside BY Condition
   /CELLS=MEAN COUNT STDDEV MIN MAX.
 
 * Encoding: UTF-8.
