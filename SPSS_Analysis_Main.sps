@@ -544,3 +544,26 @@ BEGIN DATA.
 END DATA. 
 GRAPH/SCATTERPLOT= 
  Conditio WITH     Negative BY       Time_Out .
+
+ *This can also be generated through an ANCOVA
+ 
+ UNIANOVA Negative_Affect BY Condition WITH Time_Outside
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /CRITERIA=ALPHA(0.05)
+  /DESIGN=Condition Time_Outside Condition*Time_Outside.
+ 
+ UNIANOVA Negative_Affect BY Condition WITH Religion_Recoded
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /CRITERIA=ALPHA(0.05)
+  /DESIGN=Condition Religion_Recoded Condition*Religion_Recoded.
+
+UNIANOVA Negative_Affect BY Condition WITH SM_Use1
+  /CONTRAST(Condition)=Simple(1)
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /CRITERIA=ALPHA(0.05)
+  /DESIGN=Condition SM_Use1 Condition*SM_Use1.
+ 
+ 
