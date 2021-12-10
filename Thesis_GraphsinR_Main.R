@@ -34,6 +34,18 @@ sdFSI_Positive<-sd(data$FSI_Positivity, na.rm = T)
 sdFSI_Vivid<-sd(data$FSI_Vividness, na.rm = T)
 sdSMUse<-sd(data$SM_Use1, na.rm = T)
 
+#calculate standard error
+sePA<-(sd(data$Positive_Affect, na.rm = T)/sqrt(length(data$Positive_Affect)))
+seNA<-(sd(data$Negative_Affect, na.rm = T)/sqrt(length(data$Negative_Affect)))
+seAwe<-(sd(data$Awe_Total, na.rm = T)/sqrt(length(data$Awe_Total)))
+seLonely<-(sd(data$Loneliness_Total, na.rm = T)/sqrt(length(data$Loneliness_Total)))
+seDepressed<-(sd(data$Depression_Total, na.rm = T)/sqrt(length(data$Depression_Total)))
+seFSICertain<-(sd(data$FSI_Certainty, na.rm = T)/sqrt(length(data$FSI_Certainty)))
+seFSI_Related<-(sd(data$FSI_Relatedness, na.rm = T)/sqrt(length(data$FSI_Relatedness)))
+seFSI_Positive<-(sd(data$FSI_Positivity, na.rm = T)/sqrt(length(data$FSI_Positivity)))
+seFSI_Vivid<-(sd(data$FSI_Vividness, na.rm = T)/sqrt(length(data$FSI_Vividness)))
+seSMUse<-(sd(data$SM_Use1, na.rm = T)/sqrt(length(data$SM_Use1)))
+
 #n function adds number of people in a group via stat_summary median; I found this function online and do not claim rights to it.
 n_fun <- function(x){
   return(data.frame(y = median(x), label = paste0("n = ",length(x))))
@@ -44,8 +56,8 @@ n_fun <- function(x){
 PA_graph <- ggplot(data, aes(x=Group, y=Positive_Affect,
                      fill=as.factor(Group))) + #main information about plot goes here
   geom_bar(stat = "summary", fun = "mean") +
-  scale_fill_brewer(palette="Dark2")+
-  geom_errorbar(aes(ymin = mPA - sdPA, ymax = mPA + sdPA),
+  scale_fill_brewer(palette="Dark2")+ #replace with scale_fill_grey for a black and white graph
+  geom_errorbar(aes(ymin = mPA - sdPA, ymax = mPA + sdPA), #choose to use sd or se here
                 position = position_dodge(0.9), width = .2) +
   xlab('Condition') + #Assign a label for your x axis
   ylab('Positive Affect') + #Assign a label for your y axis
