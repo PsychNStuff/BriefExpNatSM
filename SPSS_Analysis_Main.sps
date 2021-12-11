@@ -136,11 +136,6 @@ COMPUTE Affect_Total = SUM.20(PANAS_1, PANAS_3, PANAS_5, PANAS_9, PANAS_10, PANA
 PANAS_2, PANAS_4,PANAS_6, PANAS_7, PANAS_8, PANAS_11, PANAS_13, PANAS_15, PANAS_18, PANAS_20).
 EXECUTE.
 
-RECODE Religion (1 = 1) (2 = 1) (3 = 2) (4 = 2) INTO Religion_Recoded.
-VARIABLE LABELS  Religion_Recoded 'Describes religious affiliation'.
-ADD VALUE LABELS Religion_Recoded 1 'Not_Religious' 2 'Religious'.
-EXECUTE.
-
 COMPUTE FSI_Total = MEAN.7(FSI_Similar, FSI_Connected, FSI_Positivity1, FSI_Positivity2, FSI_Vividness1, FSI_Vividness2, FSI_Certainty).
 EXECUTE.
 
@@ -151,14 +146,14 @@ EXECUTE.
 
 *Frequencies, Normality and Descriptives of all variables; used to create descriptives tables, scales, and correlation table
 
-FREQUENCIES VARIABLES=Age_1 Education_Level Sex Race SES Religion_Recoded
+FREQUENCIES VARIABLES=Age_1 Education_Level Sex Race SES
   /ORDER=ANALYSIS.
 
-DESCRIPTIVES VARIABLES=Age_1 Education_Level Sex Race SES Religion_Recoded
+DESCRIPTIVES VARIABLES=Age_1 Education_Level Sex Race SES
   /STATISTICS=MEAN STDDEV MIN MAX.
 
 EXAMINE VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Social_Comparisons_Total Depression_Total FSI_Certainty 
-  FSI_Relatedness FSI_Positivity FSI_Vividness Affect_Total Religion_Recoded
+  FSI_Relatedness FSI_Positivity FSI_Vividness Affect_Total
   /PLOT BOXPLOT HISTOGRAM NPPLOT
   /COMPARE GROUPS
   /STATISTICS DESCRIPTIVES
@@ -167,12 +162,12 @@ EXAMINE VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Soc
   /NOTOTAL.
 
 DESCRIPTIVES VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Social_Comparisons_Total Depression_Total FSI_Certainty FSI_Relatedness 
-  Affect_Total FSI_Positivity FSI_Vividness FSI_Total Time_Outside SM_Use1 Religion_Recoded
+  Affect_Total FSI_Positivity FSI_Vividness FSI_Total Time_Outside SM_Use1
   /STATISTICS=MEAN STDDEV MIN MAX KURTOSIS SKEWNESS.
 
 CORRELATIONS
    /VARIABLES=Positive_Affect Negative_Affect Awe_Total Loneliness_Total Social_Comparisons_Total Depression_Total FSI_Certainty FSI_Relatedness 
-   FSI_Positivity FSI_Vividness Time_Outside SM_Use1 Religion_Recoded
+   FSI_Positivity FSI_Vividness Time_Outside SM_Use1
    /PRINT=TWOTAIL NOSIG
    /MISSING=PAIRWISE.
 
@@ -501,19 +496,6 @@ UNIANOVA FSI_Certainty FSI_Relatedness FSI_Positivity FSI_Vividness Depression_T
 *PROCESS code is not here because it takes up so much space to paste. Output from process that was used for graphs is provided. Religion_Recoded, Time_Outside, and SM_Use1 are used as potential moderators.
 
 DATA LIST FREE/ 
-   Conditio   Religi_1   Negative   . 
-BEGIN DATA. 
-     1.0000     1.0000    12.4333 
-     2.0000     1.0000    16.7143 
-     3.0000     1.0000    13.2727 
-     1.0000     2.0000    20.1200 
-     2.0000     2.0000    21.8611 
-     3.0000     2.0000    18.9032 
-END DATA. 
-GRAPH/SCATTERPLOT= 
- Conditio WITH     Negative BY       Religi_1 .
-
-DATA LIST FREE/ 
    Conditio   SM_Use1    Negative   . 
 BEGIN DATA. 
      1.0000    -1.3291    18.1065 
@@ -545,19 +527,13 @@ END DATA.
 GRAPH/SCATTERPLOT= 
  Conditio WITH     Negative BY       Time_Out .
 
- *This can also be generated through an ANCOVA
+ *This can also be generated through a univariate ANOVA
  
  UNIANOVA Negative_Affect BY Condition WITH Time_Outside
   /METHOD=SSTYPE(3)
   /INTERCEPT=INCLUDE
   /CRITERIA=ALPHA(0.05)
   /DESIGN=Condition Time_Outside Condition*Time_Outside.
- 
- UNIANOVA Negative_Affect BY Condition WITH Religion_Recoded
-  /METHOD=SSTYPE(3)
-  /INTERCEPT=INCLUDE
-  /CRITERIA=ALPHA(0.05)
-  /DESIGN=Condition Religion_Recoded Condition*Religion_Recoded.
 
 UNIANOVA Negative_Affect BY Condition WITH SM_Use1
   /CONTRAST(Condition)=Simple(1)
