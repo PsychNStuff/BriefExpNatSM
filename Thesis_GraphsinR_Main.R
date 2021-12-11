@@ -20,7 +20,6 @@ mFSI_Positive<-mean(data$FSI_Positivity, na.rm = T)
 mFSI_Vivid<-mean(data$FSI_Vividness, na.rm = T)
 mSC<-mean(data$Social_Comparisons_Total, na.rm = T)
 mSMUse<-mean(data$SM_Use1, na.rm = T)
-mReligion_Recoded<-mean(data$Religion_Recoded, na.rm = T)
 
 #calculate standard deviation
 sdPA<-sd(data$Positive_Affect, na.rm = T)
@@ -306,8 +305,6 @@ ggsave('C:\\Users\\hallc\\ThesisData\\boxplot.png') #save your plot
 
 #If you're replicating, you may be able to recode the variables I recoded here.
 colnames(data)[colnames(data) == "SM_Use1"] <- "SM_Use"
-colnames(data)[colnames(data) == "Religion_Recoded"] <- "Religious_Affiliation"
-data2 <- data[!(is.na(data$Religious_Affiliation)), ]
 
 #This will plot your data with facet wrap, so your graphs will be the same, but you will see them side by side
 mod_graph1 <- ggplot(data = data, aes(x = Group, y = Negative_Affect, fill = Group)) +
@@ -324,19 +321,6 @@ mod_graph1 <- ggplot(data = data, aes(x = Group, y = Negative_Affect, fill = Gro
 mod_graph1 #print the plot
 
 ###The rest of this is just repeating with different moderators
-
-mod_graph2 <- ggplot(data2, aes(x = Group, y = Negative_Affect, fill = Group)) +
-  geom_bar(stat = "summary", fun = "mean", na.rm = T) +
-  geom_errorbar(aes(ymin = mNA - sdNA, ymax = mNA + sdNA),
-                position = position_dodge(0.9), width = .2) +
-  theme_bw(base_size = 14)+
-  facet_wrap(~ Religious_Affiliation, nrow = 1, labeller = label_both) + 
-  labs(title = "Effect of Religious Affiliation on NA",
-       y = "Negative Affect", x = "") + #turn your axis text on a 45 degree angle
-  theme(axis.title.y = element_text(angle = 45, vjust = 0.75, hjust=1)) +
-  scale_y_continuous(limits = c(0, 50), breaks = c(5, 10, 20)) +
-  theme(legend.position = "none")
-mod_graph2
 
 mod_graph3 <- ggplot(data, aes(x = Group, y = Negative_Affect, fill = Group)) +
   geom_bar(stat = "summary", fun = "mean", na.rm = T) +
