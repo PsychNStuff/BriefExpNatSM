@@ -12,4 +12,6 @@ Most of my analyses were conducted in IBM SPSS 25. Variables were recoded and ma
 
 Bar graphs were completed using R (version 4.0.3), after the data was cleaned and the measures were created in SPSS. The code in R does not clean the data or aggregate any measures.
 
-This is currently a preregistered project at https://osf.io/r68aj/ and will be updated with any citation(s) affiliated with it.
+This is currently a preregistered project at https://osf.io/r68aj/ and has been successfully defended as an undergraduate honors thesis. It can be cited as:
+
+Hall, M.C., McMichael, S.L., & Kwan, V.S.Y. (2021). Effects of a brief exposure to nature or social media on psychological well-being [Unpublished Undergraduate Honors Thesis]. DOI:10.17605/OSF.IO/R68AJ
