@@ -23,6 +23,6 @@ Bar graphs were completed using R (version 4.0.3), after the data was cleaned an
 
 ## How to Cite or Find Related Resources
 
-This is currently a preregistered project on the [Open Science Framework](https://osf.io/r68aj/) with a publication in-press. The preprint can be cited as:
+This is currently a preregistered project on the [Open Science Framework](https://osf.io/r68aj/) and has now been published. Please cite:
 
-Hall, M.C., McMichael, S.L., & Kwan, V.S.Y. (in press). Effects of a Brief Exposure to Nature or Social Media on Psychological Well-Being. Modern Psychological Studies. Preprint available at https://doi.org/10.31234/osf.io/bfpq6
+Hall, M., McMichael, S.L., & Kwan, V.S.Y. (2023). Effects of a Brief Exposure to Nature or Social Media on Psychological Well-Being. Modern Psychological Studies, 29(1). https://scholar.utc.edu/mps/vol29/iss1/3/ 
